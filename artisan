@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+
+$host = '127.0.0.1:8000';
+$target = __DIR__ . '/index.php';
+
+// Komut satırından port değiştirildiyse yakala
+foreach ($argv as $arg) {
+    if (strpos($arg, '--host=') === 0) {
+        $host = substr($arg, 7);
+    }
+}
+
+// Bilgilendirme mesajı
+echo "PHP Development Server started on http://$host\n";
+echo "Press Ctrl-C to quit.\n";
+
+// PHP'nin yerleşik sunucusunu başlat
+passthru("php -S $host");
